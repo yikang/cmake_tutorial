@@ -31,6 +31,11 @@ add_library(camera SHARED src/camera.cpp)
 add_executable(main_test main.cpp)
 target_link_libraries(main_test camera)
 
+#install
+install(TARGETS main_test
+    DESTINATION ${CMAKE_INSTALL_PREFIX}
+)
+
 
 
 
