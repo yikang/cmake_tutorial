@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.10)
+
+project(my_cpp)
+
+include_directories(include/)
+
+## set up library path
+##set(my_LIBRARY_DIR ${CMAKE_SOURCE_DIR}/lib/)
+##find_library(my_LIBRARY library PATHS ${my_LIBRARY_DIR})
+##message("debug3:"  ${my_LIBRARY} )
+
+message("build so files..")
+file(GLOB MYLIB_SOURCES src/*.cpp)
+message("source files:", ${MYLIB_SOURCES} )
+add_library(mylib SHARED ${MYLIB_SOURCES})
+
+# set install path,i.e. run make install
+set(MY_LIB_INSTALL_DIR ${CMAKE_SOURCE_DIR}/lib/)
+message("install folder:", ${MY_LIB_INSTALL_DIR})
+install(TARGETS mylib
+        LIBRARY DESTINATION ${MY_LIB_INSTALL_DIR})
+
+add_executable(test_cpp src/test/main.cpp)
+#target_link_libraries(test_cpp ${my_LIBRARY} )
+target_link_libraries(test_cpp mylib)

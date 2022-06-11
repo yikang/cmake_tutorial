@@ -28,7 +28,7 @@ ${EIGEN3_INCLUDE_DIR}
 add_library(camera SHARED src/camera.cpp)
 
 # add executeable
-add_executable(main_test main.cpp)
+add_executable(main_test src/test/main_test1.cpp)
 target_link_libraries(main_test camera)
 
 #install
