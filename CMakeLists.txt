@@ -18,6 +18,12 @@ message("EIGEN3_INCLUDE_DIR: " ${EIGEN3_INCLUDE_DIR})
 
 message("PROJECT_SOURCE_DIR" ${PROJECT_SOURCE_DIR})
 
+find_package(casadi REQUIRED)
+MESSAGE("casadi VERSION:" ${casadi_VERSION})
+MESSAGE("casadi incldue:" ${casadi_INCLUDE_DIR})
+
+
+
 include_directories(
 ${PROJECT_SOURCE_DIR}
 ${PROJECT_SOURCE_DIR}/include
@@ -30,6 +36,15 @@ add_library(camera SHARED src/camera.cpp)
 # add executeable
 add_executable(main_test src/test/main_test1.cpp)
 target_link_libraries(main_test camera)
+
+add_executable(main_test2 src/test/main_test1.cpp)
+target_link_libraries(main_test2 camera)
+
+add_executable(test_qp src/test/test_qp.cpp)
+target_link_libraries(test_qp camera qpOASES) 
+
+add_executable(test_casadi src/test/test_casadi.cpp)
+target_link_libraries(test_casadi casadi) 
 
 #install
 install(TARGETS main_test

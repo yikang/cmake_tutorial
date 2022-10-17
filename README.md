@@ -9,6 +9,14 @@ make
 make install # optinal
 ```
 
+```
+# make for specific  target 
+
+make camera # only make library 
+make main_test2 # only make for specific target
+
+```
+
 - CMakeLists.txt  
 
 
